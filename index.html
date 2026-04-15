@@ -4,431 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Brandsdp | Premium Digital Agency — Trust Since 2015</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #fefcf5;
-            color: #1a2c2e;
-            overflow-x: hidden;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Navbar - Classic Gold Accent */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 7%;
-            background: rgba(26, 44, 46, 0.98);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid #c8a86b;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: #c8a86b;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #fefcf5;
-            font-weight: 400;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links li {
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            color: #fefcf5;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links li:hover {
-            color: #c8a86b;
-        }
-
-        .translate-btn {
-            background: #c8a86b;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            color: #1a2c2e;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        /* Hero Section - with YOUR image */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 5rem 7%;
-            gap: 3rem;
-            background: linear-gradient(115deg, #fefcf5 0%, #f5efe3 100%);
-            position: relative;
-        }
-
-        .hero-left h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            color: #1a3c34;
-        }
-
-        .hero-left h1 span {
-            color: #c8a86b;
-            border-bottom: 3px solid #c8a86b;
-        }
-
-        .hero-left p {
-            font-size: 1.1rem;
-            color: #4a5b5e;
-            margin: 1.5rem 0;
-            max-width: 550px;
-        }
-
-        /* Trust Seal Section */
-        .trust-seal {
-            display: flex;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 4px solid #c8a86b;
-        }
-
-        .trust-item i {
-            font-size: 1.5rem;
-            color: #c8a86b;
-        }
-
-        .btn-premium {
-            background: #1a3c34;
-            color: white;
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(26,60,52,0.3);
-        }
-
-        .btn-premium:hover {
-            background: #c8a86b;
-            color: #1a3c34;
-            transform: translateY(-3px);
-        }
-
-        /* Counter Section */
-        .counter-section {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            background: linear-gradient(95deg, #1a3c34, #2d5a4a);
-            padding: 4rem 2rem;
-            color: #fefcf5;
-        }
-
-        .counter-item {
-            text-align: center;
-        }
-
-        .counter-num {
-            font-size: 3rem;
-            font-weight: 800;
-            font-family: 'Playfair Display', serif;
-            color: #c8a86b;
-        }
-
-        /* Services */
-        .services {
-            padding: 5rem 7%;
-            text-align: center;
-            background: #fefcf5;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1a3c34;
-        }
-
-        .section-sub {
-            color: #6b7b7e;
-            max-width: 650px;
-            margin: 0 auto 3rem auto;
-        }
-
-        .cards-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .classic-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            width: 290px;
-            transition: all 0.4s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #e8e0d0;
-            cursor: pointer;
-        }
-
-        .classic-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 45px rgba(200,168,107,0.15);
-            border-color: #c8a86b;
-        }
-
-        .classic-card i {
-            font-size: 3rem;
-            color: #c8a86b;
-            margin-bottom: 1rem;
-        }
-
-        /* Testimonial Slider */
-        .testimonials {
-            background: #f5efe3;
-            padding: 5rem 7%;
-            text-align: center;
-        }
-
-        .testimonial-slider {
-            max-width: 700px;
-            margin: 2rem auto;
-            position: relative;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            display: none;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-        }
-
-        .testimonial-card.active {
-            display: block;
-            animation: fadeSlide 0.5s ease;
-        }
-
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .stars {
-            color: #c8a86b;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .slider-controls button {
-            background: #1a3c34;
-            border: none;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            margin: 0 0.5rem;
-            cursor: pointer;
-        }
-
-        /* Team Section - WITHOUT images (you'll add manually) */
-        .team-section {
-            padding: 5rem 7%;
-            text-align: center;
-            background: #fefcf5;
-        }
-
-        .team-scroll-container {
-            width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            white-space: nowrap;
-            padding: 1rem 0;
-            cursor: grab;
-        }
-
-        .team-scroll {
-            display: inline-flex;
-            gap: 2rem;
-            animation: scrollRightToLeft 22s linear infinite;
-        }
-
-        .team-scroll:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scrollRightToLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .team-card {
-            display: inline-block;
-            width: 260px;
-            background: white;
-            border-radius: 20px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            cursor: pointer;
-            border: 1px solid #e8e0d0;
-            transition: 0.3s;
-        }
-
-        .team-card:hover {
-            transform: scale(1.02);
-            border-color: #c8a86b;
-        }
-
-        /* Image placeholder - you'll add your images manually */
-        .team-img-placeholder {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #e8e0d0, #d4c5b0);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #c8a86b;
-            border: 3px solid #c8a86b;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: #fefcf5;
-            max-width: 400px;
-            padding: 2rem;
-            border-radius: 24px;
-            text-align: center;
-            border-top: 5px solid #c8a86b;
-        }
-
-        /* Contact Form with Formspree */
-        .contact-premium {
-            padding: 5rem 7%;
-            text-align: center;
-            background: linear-gradient(115deg, #1a3c34, #2d5a4a);
-            color: white;
-        }
-
-        .form-card {
-            max-width: 550px;
-            margin: 2rem auto 0;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 24px;
-        }
-
-        .form-card input, .form-card textarea {
-            width: 100%;
-            padding: 1rem;
-            margin: 0.6rem 0;
-            border-radius: 12px;
-            border: none;
-            background: #fefcf5;
-        }
-
-        .btn-submit {
-            background: #c8a86b;
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            color: #1a3c34;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        footer {
-            background: #1a2c2e;
-            color: #a0b4b6;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a3c34;
-            color: #c8a86b;
-            padding: 12px 28px;
-            border-radius: 50px;
-            z-index: 3000;
-            opacity: 0;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-
-        @media (max-width: 800px) {
-            .hero-left h1 { font-size: 2.2rem; }
-            .navbar { justify-content: center; text-align: center; }
-        }
+        /* ========== CRITICAL CSS - NO CHANGES TO DESIGN ========== */
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:#fefcf5;color:#1a2c2e;overflow-x:hidden;}
+        html{scroll-behavior:smooth;}
+        .navbar{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 7%;background:rgba(26,44,46,0.98);backdrop-filter:blur(12px);position:sticky;top:0;z-index:1000;border-bottom:2px solid #c8a86b;flex-wrap:wrap;gap:1rem;}
+        .logo{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:#c8a86b;letter-spacing:1px;}
+        .logo span{color:#fefcf5;font-weight:400;}
+        .nav-links{display:flex;gap:2.5rem;list-style:none;}
+        .nav-links li{font-weight:600;cursor:pointer;transition:0.3s;color:#fefcf5;letter-spacing:0.5px;}
+        .nav-links li:hover{color:#c8a86b;}
+        .translate-btn{background:#c8a86b;border:none;padding:8px 20px;border-radius:40px;color:#1a2c2e;font-weight:700;cursor:pointer;transition:0.3s;}
+        .translate-btn:hover{background:#d4b87a;transform:scale(1.05);}
+        .hero{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:5rem 7%;gap:3rem;background:linear-gradient(115deg,#fefcf5 0%,#f5efe3 100%);}
+        .hero-left h1{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:800;line-height:1.2;color:#1a3c34;animation:fadeInUp 0.8s ease;}
+        .hero-left h1 span{color:#c8a86b;border-bottom:3px solid #c8a86b;}
+        .hero-left p{font-size:1.1rem;color:#4a5b5e;margin:1.5rem 0;max-width:550px;animation:fadeInUp 1s ease;}
+        .trust-seal{display:flex;gap:2rem;margin:2rem 0;flex-wrap:wrap;animation:fadeInUp 1.2s ease;}
+        .trust-item{display:flex;align-items:center;gap:12px;background:white;padding:10px 20px;border-radius:50px;box-shadow:0 5px 15px rgba(0,0,0,0.05);border-left:4px solid #c8a86b;transition:0.3s;}
+        .trust-item:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(200,168,107,0.15);}
+        .trust-item i{font-size:1.5rem;color:#c8a86b;}
+        .btn-premium{background:#1a3c34;color:white;border:none;padding:1rem 2.5rem;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;transition:0.3s;box-shadow:0 10px 25px rgba(26,60,52,0.3);animation:pulse 2s infinite;}
+        .btn-premium:hover{background:#c8a86b;color:#1a3c34;transform:translateY(-3px);animation:none;}
+        @keyframes pulse{0%{box-shadow:0 10px 25px rgba(26,60,52,0.3);}50%{box-shadow:0 15px 35px rgba(200,168,107,0.4);}100%{box-shadow:0 10px 25px rgba(26,60,52,0.3);}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+        .hero-right img{border-radius:30px;max-width:100%;box-shadow:0 20px 40px rgba(0,0,0,0.1);width:450px;animation:float 6s ease-in-out infinite;}
+        @keyframes float{0%{transform:translateY(0px);}50%{transform:translateY(-20px);}100%{transform:translateY(0px);}}
+        .counter-section{display:flex;justify-content:center;gap:4rem;flex-wrap:wrap;background:linear-gradient(95deg,#1a3c34,#2d5a4a);padding:4rem 2rem;color:#fefcf5;}
+        .counter-item{text-align:center;animation:countPop 0.5s ease;}
+        @keyframes countPop{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+        .counter-num{font-size:3rem;font-weight:800;font-family:'Playfair Display',serif;color:#c8a86b;}
+        .services{padding:5rem 7%;text-align:center;background:#fefcf5;}
+        .section-title{font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:1rem;color:#1a3c34;position:relative;display:inline-block;}
+        .section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:#c8a86b;border-radius:3px;}
+        .section-sub{color:#6b7b7e;max-width:650px;margin:0 auto 3rem auto;}
+        .cards-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;}
+        .classic-card{background:white;border-radius:20px;padding:2rem;width:290px;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 10px 30px rgba(0,0,0,0.05);border:1px solid #e8e0d0;cursor:pointer;}
+        .classic-card:hover{transform:translateY(-12px) scale(1.02);box-shadow:0 25px 45px rgba(200,168,107,0.15);border-color:#c8a86b;}
+        .classic-card i{font-size:3rem;color:#c8a86b;margin-bottom:1rem;transition:0.3s;}
+        .classic-card:hover i{transform:scale(1.1);color:#1a3c34;}
+        .testimonials{background:#f5efe3;padding:5rem 7%;text-align:center;}
+        .testimonial-slider{max-width:700px;margin:2rem auto;position:relative;min-height:280px;}
+        .testimonial-card{background:white;padding:2rem;border-radius:20px;display:none;box-shadow:0 15px 35px rgba(0,0,0,0.08);}
+        .testimonial-card.active{display:block;animation:fadeSlide 0.5s ease;}
+        @keyframes fadeSlide{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+        .stars{color:#c8a86b;font-size:1.3rem;margin-bottom:1rem;}
+        .slider-controls button{background:#1a3c34;border:none;color:white;padding:8px 20px;border-radius:30px;margin:0 0.5rem;cursor:pointer;transition:0.3s;}
+        .slider-controls button:hover{background:#c8a86b;color:#1a3c34;transform:scale(1.05);}
+        .team-section{padding:5rem 7%;text-align:center;background:#fefcf5;}
+        .team-scroll-container{width:100%;overflow:hidden;padding:2rem 0;position:relative;mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);}
+        .team-scroll{display:flex;gap:2rem;width:max-content;animation:scrollLoop 30s linear infinite;}
+        .team-scroll:hover{animation-play-state:paused;}
+        @keyframes scrollLoop{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+        .team-card{width:270px;background:white;border-radius:20px;padding:1.5rem;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.05);cursor:pointer;border:1px solid #e8e0d0;transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275);flex-shrink:0;}
+        .team-card:hover{transform:scale(1.05) translateY(-8px);border-color:#c8a86b;box-shadow:0 20px 40px rgba(200,168,107,0.2);}
+        .team-card img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:1rem;border:3px solid #c8a86b;transition:0.3s;}
+        .team-card:hover img{border-color:#1a3c34;transform:rotate(5deg);}
+        .team-img-placeholder{width:120px;height:120px;background:linear-gradient(135deg,#e8e0d0,#d4c5b0);border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#c8a86b;border:3px solid #c8a86b;transition:0.3s;}
+        .team-card:hover .team-img-placeholder{border-color:#1a3c34;background:linear-gradient(135deg,#d4c5b0,#c8a86b);color:#1a3c34;}
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:2000;justify-content:center;align-items:center;animation:fadeIn 0.3s ease;}
+        @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+        .modal-content{background:#fefcf5;max-width:400px;padding:2rem;border-radius:24px;text-align:center;border-top:5px solid #c8a86b;animation:slideUp 0.4s ease;}
+        @keyframes slideUp{from{transform:translateY(50px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+        .contact-premium{padding:5rem 7%;text-align:center;background:linear-gradient(115deg,#1a3c34,#2d5a4a);color:white;}
+        .form-card{max-width:550px;margin:2rem auto 0;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);padding:2rem;border-radius:24px;}
+        .form-card input,.form-card textarea{width:100%;padding:1rem;margin:0.6rem 0;border-radius:12px;border:none;background:#fefcf5;transition:0.3s;}
+        .form-card input:focus,.form-card textarea:focus{outline:2px solid #c8a86b;transform:scale(1.02);}
+        .btn-submit{background:#c8a86b;width:100%;padding:1rem;border:none;border-radius:12px;font-weight:700;color:#1a3c34;cursor:pointer;font-size:1rem;transition:0.3s;}
+        .btn-submit:hover{background:#d4b87a;transform:translateY(-3px);box-shadow:0 10px 25px rgba(200,168,107,0.3);}
+        footer{background:#1a2c2e;color:#a0b4b6;text-align:center;padding:2rem;}
+        .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#1a3c34;color:#c8a86b;padding:12px 28px;border-radius:50px;z-index:3000;opacity:0;transition:0.3s;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,0.3);pointer-events:none;}
+        .loading-spinner{display:inline-block;width:40px;height:40px;border:4px solid #e8e0d0;border-top:4px solid #c8a86b;border-radius:50%;animation:spin 1s linear infinite;}
+        @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+        @media (max-width:800px){.hero-left h1{font-size:2.2rem;}.navbar{justify-content:center;text-align:center;}.team-card{width:240px;}.hero-right img{width:100%;}}
+        /* skeleton loading - no design change */
+        .skeleton-card{width:270px;background:white;border-radius:20px;padding:1.5rem;text-align:center;border:1px solid #e8e0d0;flex-shrink:0;}
+        .skeleton-avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 1rem;background:linear-gradient(90deg,#e8e0d0 25%,#f0e8d8 50%,#e8e0d0 75%);background-size:200% 100%;animation:skeleton-loading 1.5s infinite;}
+        .skeleton-name{height:24px;width:80%;margin:0 auto 8px;background:#e8e0d0;border-radius:4px;animation:skeleton-loading 1.5s infinite;}
+        .skeleton-role{height:18px;width:60%;margin:0 auto;background:#e8e0d0;border-radius:4px;animation:skeleton-loading 1.5s infinite;}
+        @keyframes skeleton-loading{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
     </style>
 </head>
 <body>
@@ -444,9 +103,9 @@
     <button class="translate-btn" id="translateBtn">🌐 हिंदी / English</button>
 </nav>
 
-<!-- Hero Section - with YOUR GitHub image -->
+<!-- Hero Section -->
 <section class="hero" id="hero">
-    <div class="hero-left" data-aos="fade-right">
+    <div class="hero-left">
         <h1>Building <span>Trust</span><br>Since 2015</h1>
         <p id="heroDesc">Premium digital solutions that transform businesses. 500+ brands, 98% retention rate — your success is our legacy.</p>
         <div class="trust-seal">
@@ -456,51 +115,37 @@
         </div>
         <button class="btn-premium" id="exploreBtn">✨ Start Your Journey →</button>
     </div>
-    <div data-aos="fade-left">
-        <img src="https://github.com/KIS566/brandsdp/blob/main/7d9f90f5-869c-4208-a197-1018dd504ed4.jpg?raw=true" 
-             alt="Brandsdp Hero Image" 
-             style="border-radius: 30px; max-width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 450px;">
+    <div class="hero-right">
+        <img src="https://github.com/KIS566/brandsdp/blob/main/7d9f90f5-869c-4208-a197-1018dd504ed4.jpg?raw=true" alt="Brandsdp Hero Image" loading="eager" fetchpriority="high">
     </div>
 </section>
 
-<!-- Counter - Social Proof -->
+<!-- Counter Section -->
 <div class="counter-section">
-    <div class="counter-item"><div class="counter-num" id="counter1">0</div><div>Projects Delivered</div></div>
-    <div class="counter-item"><div class="counter-num" id="counter2">0</div><div>Happy Clients</div></div>
-    <div class="counter-item"><div class="counter-num" id="counter3">0</div><div>Years Experience</div></div>
+    <div class="counter-item"><div class="counter-num" id="counter1">500</div><div>Projects Delivered</div></div>
+    <div class="counter-item"><div class="counter-num" id="counter2">300</div><div>Happy Clients</div></div>
+    <div class="counter-item"><div class="counter-num" id="counter3">10</div><div>Years Experience</div></div>
 </div>
 
 <!-- Services -->
 <section class="services" id="services">
-    <h2 class="section-title" data-aos="fade-up">Our Premium Services</h2>
-    <p class="section-sub" data-aos="fade-up">Crafted with excellence, delivered with precision</p>
+    <h2 class="section-title">Our Premium Services</h2>
+    <p class="section-sub">Crafted with excellence, delivered with precision</p>
     <div class="cards-grid">
-        <div class="classic-card" data-aos="zoom-in"><i class="fas fa-globe"></i><h3>Web Development</h3><p>Custom, fast, responsive websites</p></div>
-        <div class="classic-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-chart-line"></i><h3>Digital Marketing</h3><p>Data-driven growth strategies</p></div>
-        <div class="classic-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-search"></i><h3>SEO Excellence</h3><p>Rank #1 on Google</p></div>
-        <div class="classic-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-palette"></i><h3>Brand Identity</h3><p>Logo, design & storytelling</p></div>
+        <div class="classic-card"><i class="fas fa-globe"></i><h3>Web Development</h3><p>Custom, fast, responsive websites</p></div>
+        <div class="classic-card"><i class="fas fa-chart-line"></i><h3>Digital Marketing</h3><p>Data-driven growth strategies</p></div>
+        <div class="classic-card"><i class="fas fa-search"></i><h3>SEO Excellence</h3><p>Rank #1 on Google</p></div>
+        <div class="classic-card"><i class="fas fa-palette"></i><h3>Brand Identity</h3><p>Logo, design & storytelling</p></div>
     </div>
 </section>
 
-<!-- Testimonials - Trust Builder -->
+<!-- Testimonials -->
 <section class="testimonials">
     <h2 class="section-title">What Our Clients Say</h2>
     <div class="testimonial-slider">
-        <div class="testimonial-card active">
-            <div class="stars">★★★★★</div>
-            <p>"Brandsdp transformed our online presence completely. Sales increased 3x in 6 months. Highly recommended!"</p>
-            <h4>— Rajiv Mehta, CEO, TechSolve</h4>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>"The most trustworthy agency we've worked with. Professional, on-time, and results-driven."</p>
-            <h4>— Sneha Sharma, Founder, Artisan Hub</h4>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>"Their SEO strategy brought us to page 1 in just 3 months. Unbelievable expertise!"</p>
-            <h4>— Vikram Rathore, Marketing Head</h4>
-        </div>
+        <div class="testimonial-card active"><div class="stars">★★★★★</div><p>"Brandsdp transformed our online presence completely. Sales increased 3x in 6 months. Highly recommended!"</p><h4>— Rajiv Mehta, CEO, TechSolve</h4></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p>"The most trustworthy agency we've worked with. Professional, on-time, and results-driven."</p><h4>— Sneha Sharma, Founder, Artisan Hub</h4></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p>"Their SEO strategy brought us to page 1 in just 3 months. Unbelievable expertise!"</p><h4>— Vikram Rathore, Marketing Head</h4></div>
     </div>
     <div class="slider-controls">
         <button id="prevSlide"><i class="fas fa-chevron-left"></i> Previous</button>
@@ -508,204 +153,400 @@
     </div>
 </section>
 
-<!-- Team Section - NO images (you'll add manually) -->
+<!-- Team Section -->
 <section class="team-section" id="team">
-    <h2 class="section-title" data-aos="fade-up">Meet Our Experts</h2>
-    <div class="team-scroll-container" id="scrollContainer">
-        <div class="team-scroll" id="teamScroll">
-            <!-- Team Member 1 - Add your image manually -->
-            <div class="team-card" data-name="Arjun Kapoor" data-role="Founder & CEO" data-bio="15+ years in digital strategy. Trusted by Fortune 500 brands.">
-                <div class="team-img-placeholder"><i class="fas fa-user-circle"></i></div>
-                <h3>Arjun Kapoor</h3>
-                <p>Founder & CEO</p>
-            </div>
-            <!-- Team Member 2 -->
-            <div class="team-card" data-name="Meera Desai" data-role="Creative Director" data-bio="Award-winning designer, 50+ design awards.">
-                <div class="team-img-placeholder"><i class="fas fa-user-circle"></i></div>
-                <h3>Meera Desai</h3>
-                <p>Creative Director</p>
-            </div>
-            <!-- Team Member 3 -->
-            <div class="team-card" data-name="Rohan Malhotra" data-role="Lead Developer" data-bio="Full-stack expert, performance specialist.">
-                <div class="team-img-placeholder"><i class="fas fa-user-circle"></i></div>
-                <h3>Rohan Malhotra</h3>
-                <p>Lead Developer</p>
-            </div>
-            <!-- Team Member 4 -->
-            <div class="team-card" data-name="Anjali Nair" data-role="SEO Head" data-bio="300+ sites ranked on first page.">
-                <div class="team-img-placeholder"><i class="fas fa-user-circle"></i></div>
-                <h3>Anjali Nair</h3>
-                <p>SEO Head</p>
-            </div>
-            <!-- Duplicate for seamless scroll -->
-            <div class="team-card" data-name="Arjun Kapoor" data-role="Founder & CEO" data-bio="15+ years in digital strategy.">
-                <div class="team-img-placeholder"><i class="fas fa-user-circle"></i></div>
-                <h3>Arjun Kapoor</h3>
-                <p>Founder & CEO</p>
-            </div>
-        </div>
+    <h2 class="section-title">Meet Our Experts</h2>
+    <div class="team-scroll-container">
+        <div class="team-scroll" id="teamScroll"></div>
     </div>
 </section>
 
 <!-- Modal -->
-<div id="memberModal" class="modal">
+<div id="memberModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
     <div class="modal-content">
-        <div class="team-img-placeholder" style="margin: 0 auto 1rem; width: 100px; height: 100px;"><i class="fas fa-user-circle" style="font-size: 4rem;"></i></div>
+        <div id="modalImage" style="width:100px;height:100px;background:linear-gradient(135deg,#e8e0d0,#d4c5b0);border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#c8a86b;"><i class="fas fa-user-circle"></i></div>
         <h3 id="modalName"></h3>
-        <p id="modalRole" style="color:#c8a86b; font-weight:600;"></p>
+        <p id="modalRole" style="color:#c8a86b;font-weight:600;"></p>
         <p id="modalBio"></p>
-        <button class="close-modal" id="closeModalBtn" style="background:#1a3c34; color:white; border:none; padding:8px 20px; border-radius:30px; margin-top:1rem;">Close</button>
+        <button class="close-modal" id="closeModalBtn" style="background:#1a3c34;color:white;border:none;padding:8px 20px;border-radius:30px;margin-top:1rem;cursor:pointer;">Close</button>
     </div>
 </div>
 
-<!-- Contact Form with FORMPFREE ID -->
 <section class="contact-premium" id="contact">
     <h2 class="section-title" style="color:#fefcf5;">Let's Build Something Great</h2>
     <div class="form-card">
-        <form id="contactForm" action="https://formspree.io/f/xvzvddrl" method="POST">
+        <form id="contactForm">
+            <!-- Action attribute hata diya - JavaScript handle karega -->
             <input type="text" name="name" id="fullname" placeholder="Full Name *" required>
             <input type="email" name="email" id="emailid" placeholder="Email Address *" required>
             <textarea name="message" rows="3" id="msgbox" placeholder="Tell us about your project..." required></textarea>
-            <button type="submit" class="btn-submit" id="submitContact">Send Message →</button>
+            <button type="submit" class="btn-submit">Send Message →</button>
         </form>
     </div>
 </section>
 
 <footer>
     <p>© 2026 Brandsdp — Trust, Excellence, Legacy</p>
-    <p style="margin-top: 8px;">📞 +91 98765 43210 | ✉️ hello@brandsdp.com</p>
+    <p style="margin-top:8px;">📞 +91 98765 43210 | ✉️ hello@brandsdp.com</p>
 </footer>
 
-<div id="toastMsg" class="toast">✅ Thank you! We'll reach out within 24h.</div>
+<div id="toastMsg" class="toast" aria-live="polite">✅ Thank you! We'll reach out within 24h.</div>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true });
+(function(){
+    "use strict";
 
-    // Navigation
-    document.querySelectorAll('.nav-links li').forEach(li => {
-        li.addEventListener('click', () => {
-            const section = li.getAttribute('data-nav');
-            if(section === 'hero') document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
-            if(section === 'services') document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-            if(section === 'team') document.getElementById('team').scrollIntoView({ behavior: 'smooth' });
-            if(section === 'contact') document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-    document.getElementById('exploreBtn').addEventListener('click', () => {
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // Counters
-    function animateCounter(el, target) {
-        let current = 0;
-        let step = Math.ceil(target / 50);
-        let interval = setInterval(() => {
-            current += step;
-            if(current >= target) { el.innerText = target; clearInterval(interval); }
-            else el.innerText = current;
-        }, 25);
-    }
-    let counted = false;
-    const observer = new IntersectionObserver((entries) => {
-        if(entries[0].isIntersecting && !counted) {
-            counted = true;
-            animateCounter(document.getElementById('counter1'), 587);
-            animateCounter(document.getElementById('counter2'), 562);
-            animateCounter(document.getElementById('counter3'), 10);
-        }
-    }, { threshold: 0.5 });
-    observer.observe(document.querySelector('.counter-section'));
-
-    // Testimonial Slider
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.testimonial-card');
-    function showSlide(index) {
-        slides.forEach((s, i) => s.classList.toggle('active', i === index));
-    }
-    document.getElementById('nextSlide').addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    });
-    document.getElementById('prevSlide').addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    });
-
-    // Team Modal
+    // ========== CONFIGURATION ==========
+    const API_URL = "https://script.google.com/macros/s/AKfycbzrd-R4PKlwe_GBukxzCe0jVyg9886wh-omCuzZJR1qS8jA_VcLCKGJdC9mRhXo9DMpUA/exec";
+    
+    // DOM elements
+    const teamScroll = document.getElementById('teamScroll');
     const modal = document.getElementById('memberModal');
-    document.querySelectorAll('.team-card').forEach(card => {
-        card.addEventListener('click', () => {
-            document.getElementById('modalName').innerText = card.getAttribute('data-name');
-            document.getElementById('modalRole').innerText = card.getAttribute('data-role');
-            document.getElementById('modalBio').innerText = card.getAttribute('data-bio');
-            modal.style.display = 'flex';
-        });
-    });
-    document.getElementById('closeModalBtn').addEventListener('click', () => modal.style.display = 'none');
-    window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
-
-    // Auto Scroll RTL with drag
-    const scrollContainer = document.getElementById('scrollContainer');
-    let isDown = false, startX, scrollLeftPos;
-    scrollContainer.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - scrollContainer.offsetLeft; scrollLeftPos = scrollContainer.scrollLeft; });
-    scrollContainer.addEventListener('mouseleave', () => isDown = false);
-    scrollContainer.addEventListener('mouseup', () => isDown = false);
-    scrollContainer.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - scrollContainer.offsetLeft; const walk = (x - startX) * 2; scrollContainer.scrollLeft = scrollLeftPos - walk; });
-
-    // Formspree with Custom Toast (no default Formspree message)
-    const contactForm = document.getElementById('contactForm');
+    const modalName = document.getElementById('modalName');
+    const modalRole = document.getElementById('modalRole');
+    const modalBio = document.getElementById('modalBio');
+    const modalImage = document.getElementById('modalImage');
+    const closeModalBtn = document.getElementById('closeModalBtn');
     
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const name = document.getElementById('fullname').value.trim();
-        
-        try {
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-            
-            if (response.ok) {
-                // Custom success message (Formspree ka hata diya)
-                showToast(`🎉 Dhanyavaad ${name}! Hum 24 ghante mein aapse contact karenge.`, false);
-                contactForm.reset();
-            } else {
-                showToast("❌ Kuch gadbad hui. Kripya punah prayas karein.", true);
-            }
-        } catch (error) {
-            showToast("❌ Network error. Please check your connection.", true);
+    // State
+    let teamMembers = [];
+    let isLoading = false;
+    let fetchPromise = null;
+    let modalOpen = false;
+
+    // ========== UTILITIES ==========
+    const escapeHtml = (text) => {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    };
+
+    // ========== SKELETON LOADING ==========
+    function renderSkeletons(count = 4) {
+        let html = '';
+        for (let i = 0; i < count; i++) {
+            html += `
+                <div class="skeleton-card">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-name"></div>
+                    <div class="skeleton-role"></div>
+                </div>
+            `;
         }
-    });
-    
-    function showToast(msg, isErr = false) {
-        const toast = document.getElementById('toastMsg');
-        toast.textContent = msg;
-        toast.style.background = isErr ? '#8b2c2c' : '#1a3c34';
-        toast.style.opacity = '1';
-        setTimeout(() => toast.style.opacity = '0', 4000);
+        // Duplicate for seamless infinite scroll (visual only)
+        return html + html;
     }
 
-    // Translate
-    let isHindi = false;
-    const heroDesc = document.getElementById('heroDesc');
-    document.getElementById('translateBtn').addEventListener('click', () => {
-        isHindi = !isHindi;
-        if(isHindi) {
-            heroDesc.innerText = "प्रीमियम डिजिटल समाधान जो बिजनेस बदल दें। 500+ ब्रांड्स, 98% रिटेंशन — आपकी सफलता हमारी विरासत है।";
-            document.querySelector('.hero-left h1').innerHTML = 'Building <span>Trust</span><br>Since 2015';
-            document.querySelectorAll('.section-title')[0].innerText = 'हमारी प्रीमियम सेवाएं';
-            document.getElementById('translateBtn').innerHTML = '🌐 English / हिंदी';
+    // ========== RENDER TEAM CARDS ==========
+    function createTeamCardHtml(member) {
+        const name = escapeHtml(member.name);
+        const role = escapeHtml(member.role);
+        const bio = escapeHtml(member.bio || 'A passionate expert dedicated to delivering excellence.');
+        const image = escapeHtml(member.image || '');
+        
+        return `
+            <div class="team-card" data-name="${name}" data-role="${role}" data-bio="${bio}" data-image="${image}">
+                ${image ? `<img src="${image}" alt="${name}" loading="lazy" width="120" height="120">` : `<div class="team-img-placeholder"><i class="fas fa-user-circle"></i></div>`}
+                <h3>${name}</h3>
+                <p style="color:#c8a86b;">${role}</p>
+            </div>
+        `;
+    }
+
+    function renderTeamCards(members) {
+        if (!members || members.length === 0) {
+            return `
+                <div class="team-card">
+                    <div class="team-img-placeholder"><i class="fas fa-user-circle"></i></div>
+                    <h3>Add Members via Admin Panel</h3>
+                </div>
+            `;
+        }
+        
+        const originalHtml = members.map(createTeamCardHtml).join('');
+        // Duplicate exactly once for infinite scroll animation (CSS handles the rest)
+        return originalHtml;
+    }
+
+    // ========== FETCH TEAM DATA (with caching & deduplication) ==========
+    async function fetchTeamData() {
+        // Return existing promise if fetch is in progress
+        if (fetchPromise) return fetchPromise;
+        
+        fetchPromise = (async () => {
+            try {
+                const response = await fetch(`${API_URL}?sheet=team&_=${Date.now()}`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                
+                if (data && Array.isArray(data) && data.length > 0 && !data.error) {
+                    // Deduplicate efficiently using Map
+                    const uniqueMap = new Map();
+                    for (const member of data) {
+                        const key = `${member.name}|${member.role}`;
+                        if (!uniqueMap.has(key)) {
+                            uniqueMap.set(key, member);
+                        }
+                    }
+                    return Array.from(uniqueMap.values());
+                }
+                return [];
+            } catch (error) {
+                console.warn('Team fetch failed:', error);
+                return null; // null indicates error
+            } finally {
+                fetchPromise = null;
+            }
+        })();
+        
+        return fetchPromise;
+    }
+
+    // ========== LOAD AND DISPLAY TEAM ==========
+    async function loadTeamMembers() {
+        if (isLoading) return;
+        
+        // Show skeletons immediately
+        teamScroll.innerHTML = renderSkeletons(4);
+        isLoading = true;
+        
+        // Use requestIdleCallback or setTimeout for non-blocking UI
+        const members = await fetchTeamData();
+        
+        if (members === null) {
+            // Error state
+            teamScroll.innerHTML = `
+                <div class="team-card">
+                    <div class="team-img-placeholder"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h3>Connection Error</h3>
+                    <p style="font-size:0.9rem;margin-top:0.5rem;">Retrying...</p>
+                </div>
+            `;
+            // Auto retry once after 3 seconds
+            setTimeout(() => {
+                fetchPromise = null;
+                loadTeamMembers();
+            }, 3000);
         } else {
-            heroDesc.innerText = "Premium digital solutions that transform businesses. 500+ brands, 98% retention rate — your success is our legacy.";
-            document.querySelector('.hero-left h1').innerHTML = 'Building <span>Trust</span><br>Since 2015';
-            document.querySelectorAll('.section-title')[0].innerText = 'Our Premium Services';
-            document.getElementById('translateBtn').innerHTML = '🌐 हिंदी / English';
+            teamMembers = members;
+            // Batch DOM update - single innerHTML
+            teamScroll.innerHTML = renderTeamCards(members);
+        }
+        
+        isLoading = false;
+    }
+
+    // ========== MODAL MANAGEMENT (event delegation - no duplicate listeners) ==========
+    function openModal(memberData) {
+        const { name, role, bio, image } = memberData;
+        
+        modalName.textContent = name || '';
+        modalRole.textContent = role || '';
+        modalBio.textContent = bio || '';
+        
+        if (image && image !== '') {
+            modalImage.innerHTML = `<img src="${escapeHtml(image)}" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" alt="${escapeHtml(name)}">`;
+        } else {
+            modalImage.innerHTML = `<i class="fas fa-user-circle" style="font-size:4rem;"></i>`;
+        }
+        
+        modal.style.display = 'flex';
+        modalOpen = true;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        modalOpen = false;
+        document.body.style.overflow = '';
+    }
+
+    // Event delegation for team cards (single listener on container)
+    teamScroll.addEventListener('click', (e) => {
+        const card = e.target.closest('.team-card');
+        if (!card) return;
+        
+        const name = card.dataset.name;
+        if (!name) return; // Skip skeleton/error cards
+        
+        openModal({
+            name: name,
+            role: card.dataset.role,
+            bio: card.dataset.bio,
+            image: card.dataset.image
+        });
+    });
+
+    // Modal close handlers
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOpen) {
+            closeModal();
         }
     });
+
+    // ========== COUNTER ANIMATION (optimized with requestAnimationFrame) ==========
+    function animateCounter(id, start, end, duration = 2000) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        
+        const startTime = performance.now();
+        const step = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            element.textContent = Math.floor(progress * (end - start) + start);
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+        requestAnimationFrame(step);
+    }
+
+    // Intersection Observer for counters (lazy)
+    const counterObserver = new IntersectionObserver((entries, obs) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                animateCounter('counter1', 0, 500, 2000);
+                animateCounter('counter2', 0, 300, 2000);
+                animateCounter('counter3', 0, 10, 2000);
+                obs.disconnect();
+                break;
+            }
+        }
+    }, { threshold: 0.3 });
+    
+    const counterSection = document.querySelector('.counter-section');
+    if (counterSection) counterObserver.observe(counterSection);
+
+    // ========== TESTIMONIAL SLIDER (single interval) ==========
+    const slides = document.querySelectorAll('.testimonial-card');
+    let currentSlide = 0;
+    let slideInterval = null;
+    
+    function showSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (index + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    
+    if (slides.length > 0) {
+        document.getElementById('prevSlide')?.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+            resetSlideInterval();
+        });
+        
+        document.getElementById('nextSlide')?.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+            resetSlideInterval();
+        });
+        
+        function startSlideInterval() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = setInterval(() => showSlide(currentSlide + 1), 5000);
+        }
+        
+        function resetSlideInterval() {
+            if (slideInterval) clearInterval(slideInterval);
+            startSlideInterval();
+        }
+        
+        startSlideInterval();
+    }
+
+    // ========== SMOOTH SCROLL NAVIGATION ==========
+    document.querySelectorAll('[data-nav]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const targetId = item.dataset.nav;
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    document.getElementById('exploreBtn')?.addEventListener('click', () => {
+        document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+    });
+
+   // Form submission ka updated code
+const FORMSPREE_URL = "https://formspree.io/f/xvzvddrl";
+
+document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    
+    // Loading state
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    try {
+        const formData = new FormData(form);
+        
+        const response = await fetch(FORMSPREE_URL, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            // Success - show toast
+            const toast = document.getElementById('toastMsg');
+            toast.style.opacity = '1';
+            setTimeout(() => toast.style.opacity = '0', 3000);
+            form.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        alert('⚠️ Unable to send message. Please try again or email us directly at hello@brandsdp.com');
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+});
+
+    // ========== TRANSLATE TOGGLE ==========
+    const translateBtn = document.getElementById('translateBtn');
+    const heroDesc = document.getElementById('heroDesc');
+    let isHindi = false;
+    
+    translateBtn?.addEventListener('click', () => {
+        if (isHindi) {
+            heroDesc.textContent = 'Premium digital solutions that transform businesses. 500+ brands, 98% retention rate — your success is our legacy.';
+            translateBtn.innerHTML = '🌐 हिंदी / English';
+        } else {
+            heroDesc.textContent = 'प्रीमियम डिजिटल समाधान जो व्यवसायों को बदलते हैं। 500+ ब्रांड, 98% प्रतिधारण दर — आपकी सफलता हमारी विरासत है।';
+            translateBtn.innerHTML = '🌐 English / हिंदी';
+        }
+        isHindi = !isHindi;
+    });
+
+    // ========== INITIALIZE ==========
+    // Start loading team immediately but non-blocking
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadTeamMembers);
+    } else {
+        loadTeamMembers();
+    }
+    
+    // Preconnect to API for faster fetch
+    const preconnect = document.createElement('link');
+    preconnect.rel = 'preconnect';
+    preconnect.href = 'https://script.google.com';
+    document.head.appendChild(preconnect);
+
+})();
 </script>
 </body>
 </html>
