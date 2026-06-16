@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel • Deals Bazaar</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#f0f2f5;font-family:'Segoe UI',sans-serif;color:#1a1a2e;padding:24px}
+    .container{max-width:900px;margin:0 auto}
+    h1{margin-bottom:20px;display:flex;align-items:center;gap:10px}
+    h1 i{color:#00bcd4}
+    .card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 16px rgba(0,0,0,0.06);margin-bottom:20px}
+    .card h2{margin-bottom:16px;font-size:1.2rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    .full{grid-column:1/-1}
+    label{display:block;font-weight:600;font-size:0.78rem;text-transform:uppercase;color:#5f6b7a;margin-bottom:4px}
+    input,select,textarea{width:100%;padding:10px 14px;border:2px solid #e0e5ec;border-radius:10px;font-size:0.9rem;font-family:inherit}
+    textarea{resize:vertical;min-height:70px}
+    .btn{padding:10px 20px;border-radius:10px;border:none;font-weight:700;cursor:pointer;font-size:0.88rem;margin-right:8px;margin-top:8px;transition:0.2s}
+    .btn-primary{background:#00bcd4;color:#fff}
+    .btn-primary:hover{background:#00838f}
+    .btn-danger{background:#ef5350;color:#fff}
+    .btn-outline{background:#fff;border:2px solid #e0e5ec}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    th{background:#f8fafc;padding:10px 12px;text-align:left;border-bottom:2px solid #e0e5ec;font-size:0.75rem;text-transform:uppercase}
+    td{padding:10px 12px;border-bottom:1px solid #f1f4f9}
+    .toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:10px;color:#fff;font-weight:600;z-index:999;animation:slide 0.3s ease}
+    .toast-success{background:#66bb6a}
+    .toast-error{background:#ef5350}
+    @keyframes slide{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-shield-alt"></i> Admin Panel</h1>
+    
+    <div class="card">
+      <h2 id="formTitle">➕ Add Product</h2>
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <input type="hidden" id="editId">
+        <div class="form-row">
+          <div class="full"><label>Title *</label><input type="text" id="title" required></div>
+          <div><label>Platform *</label><select id="platform" required><option value="">Select</option><option>Amazon</option><option>Flipkart</option><option>Meesho</option><option>Myntra</option><option>Other</option></select></div>
+          <div><label>Price ₹ *</label><input type="number" id="price" required></div>
+          <div><label>Old Price ₹</label><input type="number" id="oldPrice"></div>
+          <div><label>Discount</label><input type="text" id="discount" placeholder="60% OFF"></div>
+          <div class="full"><label>Image URL</label><input type="url" id="image" placeholder="https://..."></div>
+          <div class="full"><label>Affiliate Link *</label><input type="url" id="link" required></div>
+          <div class="full"><label>Description</label><textarea id="description" placeholder="Short description..."></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="saveBtn">💾 Save Product</button>
+        <button type="button" class="btn btn-outline" onclick="resetForm()">🗑️ Clear</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>📋 All Products</h2>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>Title</th><th>Platform</th><th>Price</th><th>Actions</th></tr></thead>
+          <tbody id="productTable"><tr><td colspan="4">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script>
+    // ✅ APNA GOOGLE APPS SCRIPT URL
+    var API_URL = 'https://script.google.com/macros/s/AKfycbyMC7iu3ukzfzBEoj2lFZL_2Gc-JrAxauVU9FpA2g5QYb_omA7BcUXPNpHdvyCawnBJqA/exec';
+
+    function showToast(msg, type) {
+      var t = document.createElement('div');
+      t.className = 'toast toast-'+type;
+      t.textContent = msg;
+      document.getElementById('toastContainer').appendChild(t);
+      setTimeout(function(){ t.remove(); }, 3000);
+    }
+
+    async function loadProducts() {
+      try {
+        var res = await fetch(API_URL + '?action=getProducts');
+        var data = await res.json();
+        var tbody = document.getElementById('productTable');
+        
+        if (Array.isArray(data) && data.length) {
+          tbody.innerHTML = data.map(function(p) {
+            return '<tr>'+
+              '<td><strong>'+(p.title||'')+'</strong></td>'+
+              '<td>'+(p.platform||'')+'</td>'+
+              '<td>₹'+(p.price||'')+'</td>'+
+              '<td>'+
+                '<button onclick="editProduct(\''+p.id+'\')" class="btn btn-outline" style="padding:4px 10px;font-size:0.75rem;">✏️</button> '+
+                '<button onclick="deleteProduct(\''+p.id+'\')" class="btn btn-danger" style="padding:4px 10px;font-size:0.75rem;">🗑️</button>'+
+              '</td>'+
+            '</tr>';
+          }).join('');
+        } else {
+          tbody.innerHTML = '<tr><td colspan="4">No products yet</td></tr>';
+        }
+      } catch(err) {
+        showToast('Failed to load: '+err.message, 'error');
+      }
+    }
+
+    async function saveProduct(e) {
+      e.preventDefault();
+      
+      var id = document.getElementById('editId').value || Date.now().toString(36);
+      var product = {
+        id: id,
+        title: document.getElementById('title').value.trim(),
+        platform: document.getElementById('platform').value,
+        price: document.getElementById('price').value,
+        oldPrice: document.getElementById('oldPrice').value,
+        discount: document.getElementById('discount').value,
+        image: document.getElementById('image').value,
+        link: document.getElementById('link').value,
+        description: document.getElementById('description').value
+      };
+
+      var action = document.getElementById('editId').value ? 'updateProduct' : 'addProduct';
+
+      try {
+        var res = await fetch(API_URL + '?action='+action+'&data='+encodeURIComponent(JSON.stringify(product)), {
+          method: 'POST'
+        });
+        var result = await res.json();
+        
+        if (result.success) {
+          showToast('✅ Saved!', 'success');
+          resetForm();
+          loadProducts();
+        } else {
+          showToast('❌ Error: '+JSON.stringify(result), 'error');
+        }
+      } catch(err) {
+        showToast('❌ '+err.message, 'error');
+      }
+    }
+
+    async function editProduct(id) {
+      try {
+        var res = await fetch(API_URL + '?action=getProducts');
+        var data = await res.json();
+        var product = data.find(function(p) { return p.id === id; });
+        
+        if (product) {
+          document.getElementById('editId').value = product.id || '';
+          document.getElementById('title').value = product.title || '';
+          document.getElementById('platform').value = product.platform || '';
+          document.getElementById('price').value = product.price || '';
+          document.getElementById('oldPrice').value = product.oldPrice || '';
+          document.getElementById('discount').value = product.discount || '';
+          document.getElementById('image').value = product.image || '';
+          document.getElementById('link').value = product.link || '';
+          document.getElementById('description').value = product.description || '';
+          document.getElementById('formTitle').textContent = '✏️ Edit Product';
+          document.getElementById('saveBtn').textContent = '📝 Update Product';
+          window.scrollTo({top:0, behavior:'smooth'});
+        }
+      } catch(err) {
+        showToast('Error: '+err.message, 'error');
+      }
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm('Delete this product?')) return;
+      
+      try {
+        await fetch(API_URL + '?action=deleteProduct&id='+id, { method: 'POST' });
+        showToast('🗑️ Deleted!', 'error');
+        loadProducts();
+      } catch(err) {
+        showToast('Error: '+err.message, 'error');
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('productForm').reset();
+      document.getElementById('editId').value = '';
+      document.getElementById('formTitle').textContent = '➕ Add Product';
+      document.getElementById('saveBtn').textContent = '💾 Save Product';
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
